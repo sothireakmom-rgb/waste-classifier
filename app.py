@@ -21,16 +21,9 @@ def load_model(path):
             "the README and place it in the project root, then run this again."
         )
 
-    model = models.resnet18(weights=None)
-    model.fc = nn.Linear(model.fc.in_features, len(label_names))
-
-    checkpoint = torch.load(path, map_location=device, weights_only=False)
-    if isinstance(checkpoint, nn.Module):
-        model = checkpoint
-    else:
-        state_dict = checkpoint.get("state_dict", checkpoint)
-        model.load_state_dict(state_dict)
-
+    model = models.resnet18()
+    model.fc = nn.Sequential(nn.Dropout(0.5), nn.Linear(512, len(label_names)))
+    model.load_state_dict(torch.load(path, map_location="cpu"))
     model.to(device)
     model.eval()
     return model
