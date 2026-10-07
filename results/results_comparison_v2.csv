@@ -1,0 +1,5 @@
+Approach,Test_acc,Best_val,Final_train,Best_epoch,Train_sec,Trainable_params,Total_params,LR,WD,Hardware
+1. CNN scratch,0.6895,0.7467,0.6833,23,190.7,94470,94470,0.001,0.0001,Tesla T4
+2. ResNet frozen,0.7658,0.7573,0.8258,6,103.7,3078,11179590,0.001,0.0001,Tesla T4
+3. ResNet fine-tuned (default),0.8921,0.905,0.9904,14,138.5,11179590,11179590,0.0001,0.0001,Tesla T4
+3. ResNet fine-tuned (tuned),0.9289,0.9156,0.991,12,140.2,11179590,11179590,0.0001,0.1,Tesla T4
